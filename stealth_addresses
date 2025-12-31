@@ -3,7 +3,7 @@
 ## 1. Problem Definition
 A static public receiving address on a blockchain acts as a permanent identity beacon.  
 Once shared, every payment to that address is publicly visible and linkable.  
-Anyone can track incoming payments, estimate activity and income, and monitor future transfers.  
+Anyone can track incoming payments, estimate activity and income and monitor future transfers.  
 
 Creating new addresses manually for each payment does not scale and breaks UX. Coordination off chain introduces mistakes, and users eventually reuse addresses.  
 **Stealth addresses solve this problem** by allowing recipients to receive funds at fresh, unlinkable addresses while publishing a single public identifier.
