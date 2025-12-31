@@ -25,7 +25,7 @@ Privacy depends on several assumptions:
 
 
 ## Limitations and Tradeoffs
-- Privacy depends on pool size and activity  
+-  Privacy depends on pool size and activity  
 - Fixed denominations reduce flexibility  
 - Timing patterns can leak links between deposits and withdrawals  
 - UX requires managing secrets, generating new addresses, and sometimes waiting for large pools  
