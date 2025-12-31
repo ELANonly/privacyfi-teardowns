@@ -1,0 +1,37 @@
+Stealth Addresses
+What they are
+Stealth addresses are a privacy technique that protects recipient identity on public blockchains.
+They allow someone to publish a single public identifier while receiving funds to fresh, unlinkable addresses each time.
+The blockchain shows normal transfers, but observers cannot easily tell that multiple payments went to the same recipient.
+This solves recipient privacy, not transaction privacy.
+The problem they solve
+A static public address becomes a permanent identity beacon.
+Once shared, anyone can: • Track all incoming payments
+• Estimate income and activity
+• Monitor future transfers
+• Correlate behavior across time
+Creating new addresses manually does not scale and breaks UX. Coordination moves off chain and users eventually reuse addresses.
+Stealth addresses remove the need to reuse a receiving address.
+How stealth addresses work
+A recipient publishes a public stealth identifier, not a wallet address.
+A sender uses this identifier to derive a one time destination address locally.
+Each payment goes to a unique address that appears unrelated on chain.
+The recipient scans the chain using a private viewing key to detect incoming payments and derive the spending key.
+On chain, payments look random.
+Off chain, the recipient knows which funds are theirs.
+What this assumes
+Wallets must implement derivation correctly.
+Recipients must protect viewing keys.
+Scanning infrastructure must be reliable.
+Network metadata and off chain context can still leak identity. Stealth addresses do not protect against that.
+What this does not solve
+Stealth addresses do not: • Hide senders
+• Hide amounts
+• Hide timing
+• Provide anonymity
+They only remove address reuse and recipient linkability.
+When they work best
+Stealth addresses work best when: • Wallet support is native
+• Users understand basic privacy hygiene
+• Combined with other privacy tools
+They are a building block, not a full privacy system.
