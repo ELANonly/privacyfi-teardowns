@@ -1,37 +1,53 @@
-Stealth Addresses
-What they are
-Stealth addresses are a privacy technique that protects recipient identity on public blockchains.
-They allow someone to publish a single public identifier while receiving funds to fresh, unlinkable addresses each time.
-The blockchain shows normal transfers, but observers cannot easily tell that multiple payments went to the same recipient.
-This solves recipient privacy, not transaction privacy.
-The problem they solve
-A static public address becomes a permanent identity beacon.
-Once shared, anyone can: • Track all incoming payments
-• Estimate income and activity
-• Monitor future transfers
-• Correlate behavior across time
-Creating new addresses manually does not scale and breaks UX. Coordination moves off chain and users eventually reuse addresses.
-Stealth addresses remove the need to reuse a receiving address.
-How stealth addresses work
-A recipient publishes a public stealth identifier, not a wallet address.
-A sender uses this identifier to derive a one time destination address locally.
-Each payment goes to a unique address that appears unrelated on chain.
-The recipient scans the chain using a private viewing key to detect incoming payments and derive the spending key.
-On chain, payments look random.
-Off chain, the recipient knows which funds are theirs.
-What this assumes
-Wallets must implement derivation correctly.
-Recipients must protect viewing keys.
-Scanning infrastructure must be reliable.
-Network metadata and off chain context can still leak identity. Stealth addresses do not protect against that.
-What this does not solve
-Stealth addresses do not: • Hide senders
-• Hide amounts
-• Hide timing
-• Provide anonymity
-They only remove address reuse and recipient linkability.
-When they work best
-Stealth addresses work best when: • Wallet support is native
-• Users understand basic privacy hygiene
-• Combined with other privacy tools
-They are a building block, not a full privacy system.
+# Stealth Addresses Teardown
+
+## 1. Problem Definition
+A static public receiving address on a blockchain acts as a permanent identity beacon.  
+Once shared, every payment to that address is publicly visible and linkable.  
+Anyone can track incoming payments, estimate activity and income, and monitor future transfers.  
+
+Creating new addresses manually for each payment does not scale and breaks UX. Coordination off chain introduces mistakes, and users eventually reuse addresses.  
+**Stealth addresses solve this problem** by allowing recipients to receive funds at fresh, unlinkable addresses while publishing a single public identifier.
+
+
+## 2. How Privacy is Achieved and Trust Assumptions
+Stealth addresses hide recipient identity by deriving **one time addresses** for each payment.  
+
+- A recipient publishes a **public stealth identifier**, not a reusable address  
+- A sender uses this identifier to locally derive a **unique destination address** for each transaction  
+- The recipient scans the blockchain using a **private viewing key** to detect payments and derive the corresponding spending key  
+- Observers see multiple unrelated addresses; the recipient knows which funds are theirs  
+
+**Trust assumptions include:**  
+- Wallets implement address derivation correctly  
+- Recipients securely manage viewing keys  
+- Blockchain scanning infrastructure works reliably  
+- External metadata, network, or off chain context may still leak information
+
+
+## 3. Limitations and Tradeoffs
+- Only hides recipient identity; senders, amounts, and timing remain visible  
+- Requires wallet support and correct implementation  
+- Recipients must scan for payments, introducing operational overhead  
+- Partial privacy only; does not replace mixers or ZK privacy systems  
+- Adoption dependency; low adoption reduces effectiveness  
+- Misuse can create a false sense of privacy
+
+
+## 4. Common User Misconceptions
+- **“Transactions are fully private”** – false  
+- **“I am anonymous”** – false  
+- **“No behavior change is required”** – false  
+- **“Replaces mixers or ZK systems”** – false  
+- **“Privacy is preserved after spending”** – false
+
+
+## 5. User Suitability
+**Recommended for:**  
+- Users who want to receive funds without exposing a reusable address  
+- Users comfortable with privacy-aware wallet practices  
+- Builders designing systems with layered privacy  
+
+**Not recommended for:**  
+- Users expecting full transaction anonymity  
+- Users unwilling to manage viewing keys or scan for payments  
+- Users seeking maximum
